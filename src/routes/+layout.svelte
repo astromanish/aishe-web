@@ -1,7 +1,8 @@
 <script lang="ts">
   import { app } from '$lib/stores.svelte';
-  import { t } from '$lib/i18n.svelte';
   import '../app.css';
+
+  let { children } = $props();
 
   // Ensure <html> class stays in sync
   $effect(() => {
@@ -17,5 +18,5 @@
 </svelte:head>
 
 <div class="min-h-screen w-full" style="background-color: var(--color-paper);">
-  <slot />
+  {@render children()}
 </div>

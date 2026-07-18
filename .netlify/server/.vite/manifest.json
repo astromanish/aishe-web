@@ -16,13 +16,6 @@
       "_server.js"
     ]
   },
-  "_i18n.svelte.js": {
-    "file": "chunks/i18n.svelte.js",
-    "name": "i18n.svelte",
-    "imports": [
-      "_server.js"
-    ]
-  },
   "_index-server.js": {
     "file": "chunks/index-server.js",
     "name": "index-server",
@@ -50,6 +43,13 @@
   "_shared.js": {
     "file": "chunks/shared.js",
     "name": "shared"
+  },
+  "_stores.svelte.js": {
+    "file": "chunks/stores.svelte.js",
+    "name": "stores.svelte",
+    "imports": [
+      "_server.js"
+    ]
   },
   "_utils.js": {
     "file": "chunks/utils.js",
@@ -104,7 +104,7 @@
     "isEntry": true,
     "imports": [
       "_server.js",
-      "_i18n.svelte.js"
+      "_stores.svelte.js"
     ],
     "css": [
       "_app/immutable/assets/_layout.CjVx7Ikg.css"
@@ -118,7 +118,7 @@
     "imports": [
       "_index-server.js",
       "_server.js",
-      "_i18n.svelte.js"
+      "_stores.svelte.js"
     ],
     "css": [
       "_app/immutable/assets/_page.bIvfsCul.css"

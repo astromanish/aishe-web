@@ -1,14 +1,19 @@
 # Aishe Web
 
-Voice-first AI for Bharat. SvelteKit landing page, waitlist, and pricing — written in Svelte 5 with runes.
+Voice-first AI for Bharat — the landing page. SvelteKit + Svelte 5 runes.
 
 ## Stack
 
-- **Framework:** SvelteKit 2 (adapter-node) + Svelte 5 (runes)
-- **Styling:** Tailwind CSS 4 via Vite plugin
-- **Icons:** lucide-svelte
-- **DB:** better-sqlite3 (waitlist)
+- **Framework:** SvelteKit 2, **UI:** Svelte 5 (runes)
+- **Styling:** Tailwind CSS 4 via the Vite plugin
+- **Adapter:** `@sveltejs/adapter-netlify` — deployed to Netlify
 - **Runtime:** Node.js
+
+> Note: this was originally built on `adapter-node` with a different component
+> layout. If you are reading old notes that mention `adapter-node`,
+> `better-sqlite3`, a waitlist DB, `lucide-svelte`, or components like
+> `WaitlistLanding.svelte` / `ChatApp.svelte` — those are gone. See the tree
+> below for what actually ships.
 
 ## Develop
 
@@ -25,27 +30,25 @@ npm run check        # svelte-check
 ```
 src/
   routes/
-    +page.svelte              # landing
-    WaitlistLanding.svelte    # waitlist flow
-    ChatApp.svelte            # in-browser voice chat
-    ComparisonTable.svelte    # vs competitors
-    SkillsShowcase.svelte
-    Navbar.svelte
-    Footer.svelte
-    ...
+    +page.svelte            # landing
+    +layout.svelte          # shell: nav + footer
+    pricing/+page.svelte    # model pricing catalog
   lib/
-    voice.svelte.ts           # Web Speech API wrapper
-    chat.svelte.ts            # chat state
-    i18n.svelte.ts            # i18n state
-    stores.svelte.ts          # global runes
-    utils.ts
+    ThreeHero.svelte        # animated hero
+    i18n.svelte.ts          # i18n state
+    stores.svelte.ts        # global runes
+    pricing.ts              # live OpenRouter pricing + ₹ conversion
   app.html
-  app.d.ts
-static/                       # static assets
+  app.css
 ```
+
+## Deploy
+
+`netlify deploy --prod`, or push to `main` if the Netlify Git integration is
+enabled. The generated SSR bundle lands in `.netlify/` and is git-ignored.
 
 ## Notes
 
-- Adapter is `adapter-node` (not adapter-auto) for direct Node deploy
-- `.svelte-kit`, `build`, `node_modules` are git-ignored
-- `waitlist.db` is local-only, never committed
+- `.svelte-kit`, `build`, `node_modules` and `.netlify` are git-ignored
+  (`.netlify` was committed before the ignore rule was added, so its 24
+  generated files are still tracked — see the tracker).

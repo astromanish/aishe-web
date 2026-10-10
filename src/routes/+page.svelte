@@ -29,49 +29,52 @@
   };
 
   const features = $derived([
-    { icon: icons.terminal, title: t('feat1Title', app.lang), desc: t('feat1Desc', app.lang) },
+    { icon: icons.bolt, title: t('feat1Title', app.lang), desc: t('feat1Desc', app.lang) },
     { icon: icons.mic, title: t('feat2Title', app.lang), desc: t('feat2Desc', app.lang) },
     { icon: icons.brain, title: t('feat3Title', app.lang), desc: t('feat3Desc', app.lang) },
     { icon: icons.split, title: t('feat4Title', app.lang), desc: t('feat4Desc', app.lang) },
-    { icon: icons.speaker, title: t('feat5Title', app.lang), desc: t('feat5Desc', app.lang) },
+    { icon: icons.shield, title: t('feat5Title', app.lang), desc: t('feat5Desc', app.lang) },
     { icon: icons.search, title: t('feat6Title', app.lang), desc: t('feat6Desc', app.lang) },
   ]);
 
-  const skills = $derived([
-    { icon: icons.micSkill, title: t('skillVoice', app.lang), desc: t('skillVoiceDesc', app.lang) },
-    { icon: icons.calc, title: t('skillUpi', app.lang), desc: t('skillUpiDesc', app.lang) },
-    { icon: icons.clock, title: t('skillTravel', app.lang), desc: t('skillTravelDesc', app.lang) },
-    { icon: icons.search, title: t('skillShopping', app.lang), desc: t('skillShoppingDesc', app.lang) },
-    { icon: icons.plus, title: t('skillReminders', app.lang), desc: t('skillRemindersDesc', app.lang) },
-    { icon: icons.stats, title: t('skillAgri', app.lang), desc: t('skillAgriDesc', app.lang) },
-    { icon: icons.split, title: t('skillHealth', app.lang), desc: t('skillHealthDesc', app.lang) },
-    { icon: icons.file, title: t('skillEdu', app.lang), desc: t('skillEduDesc', app.lang) },
+  const tools = $derived([
+    { icon: icons.calc, title: t('toolCalc', app.lang), desc: t('toolCalcDesc', app.lang) },
+    { icon: icons.clock, title: t('toolTime', app.lang), desc: t('toolTimeDesc', app.lang) },
+    { icon: icons.search, title: t('toolMemSearch', app.lang), desc: t('toolMemSearchDesc', app.lang) },
+    { icon: icons.plus, title: t('toolMemAdd', app.lang), desc: t('toolMemAddDesc', app.lang) },
+    { icon: icons.stats, title: t('toolWord', app.lang), desc: t('toolWordDesc', app.lang) },
+    { icon: icons.globe, title: t('toolWeb', app.lang), desc: t('toolWebDesc', app.lang) },
+    { icon: icons.file, title: t('toolExtract', app.lang), desc: t('toolExtractDesc', app.lang) },
+    { icon: icons.terminal, title: t('toolCmd', app.lang), desc: t('toolCmdDesc', app.lang) },
+    { icon: icons.split, title: t('toolSubagent', app.lang), desc: t('toolSubagentDesc', app.lang) },
+  ]);
+
+  const surfaces = $derived([
+    { icon: icons.terminal, name: 'CLI' },
+    { icon: icons.cpu, name: 'Desktop' },
+    { icon: icons.globe, name: 'Telegram' },
   ]);
 
   const archServices = $derived([
     { icon: icons.cpu, name: t('arch1Name', app.lang), port: t('arch1Port', app.lang), desc: t('arch1Desc', app.lang) },
     { icon: icons.server, name: t('arch2Name', app.lang), port: t('arch2Port', app.lang), desc: t('arch2Desc', app.lang) },
-    { icon: icons.wave, name: t('arch3Name', app.lang), port: t('arch3Port', app.lang), desc: t('arch3Desc', app.lang) },
-    { icon: icons.speaker, name: t('arch4Name', app.lang), port: t('arch4Port', app.lang), desc: t('arch4Desc', app.lang) },
+    { icon: icons.trending, name: t('arch3Name', app.lang), port: t('arch3Port', app.lang), desc: t('arch3Desc', app.lang) },
+    { icon: icons.wave, name: t('arch4Name', app.lang), port: t('arch4Port', app.lang), desc: t('arch4Desc', app.lang) },
   ]);
 
   const commands = [
-    { cmd: 'aishe status' },
-    { cmd: 'aishe chat "What is 15 * 4?"' },
-    { cmd: 'aishe stream "Tell me a joke"' },
-    { cmd: 'aishe repl' },
-    { cmd: 'aishe live' },
+    { cmd: 'aishe' },
+    { cmd: 'aishe "What is 15 * 4?"' },
+    { cmd: 'aishe desktop' },
+    { cmd: 'aishe telegram start' },
     { cmd: 'aishe memory add "User prefers Hindi"' },
     { cmd: 'aishe memory search "Hindi"' },
-    { cmd: 'aishe threads --new' },
-    { cmd: 'aishe voice transcribe recording.wav' },
-    { cmd: 'aishe voice speak "Namaste"' },
-    { cmd: 'aishe ollama models' },
+    { cmd: 'aishe memory status' },
+    { cmd: 'aishe search "aishe"' },
+    { cmd: 'aishe config set provider openrouter' },
+    { cmd: 'aishe gateway status' },
     { cmd: 'aishe doctor' },
-    { cmd: 'aishe search "pizza"' },
-    { cmd: 'aishe export' },
-    { cmd: 'aishe config set voice.default_voice M1' },
-    { cmd: 'aishe completions zsh' },
+    { cmd: 'aishe status' },
   ];
 
   let activeSkill = $state(0);
@@ -128,7 +131,7 @@
     <div class="hidden md:flex items-center gap-7">
       <a href="#install" class="text-[0.8125rem] font-medium transition-colors hover:opacity-60" style="color: var(--color-ink-2);">{t('navInstall', app.lang)}</a>
       <a href="#features" class="text-[0.8125rem] font-medium transition-colors hover:opacity-60" style="color: var(--color-ink-2);">{t('navFeatures', app.lang)}</a>
-      <a href="#skills" class="text-[0.8125rem] font-medium transition-colors hover:opacity-60" style="color: var(--color-ink-2);">{t('navSkills', app.lang)}</a>
+      <a href="#skills" class="text-[0.8125rem] font-medium transition-colors hover:opacity-60" style="color: var(--color-ink-2);">{t('navTools', app.lang)}</a>
       <a href="/pricing" class="text-[0.8125rem] font-medium transition-colors hover:opacity-60" style="color: var(--color-ink-2);">Pricing</a>
       <a href="https://github.com/astromanish/aishe-cli" target="_blank" class="flex items-center gap-1.5 text-[0.8125rem] font-medium transition-colors hover:opacity-60" style="color: var(--color-ink-2);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -182,7 +185,7 @@
       style="background: var(--color-nav-bg); border-color: var(--color-line);">
       <a href="#install" class="block text-sm py-2" style="color: var(--color-ink-2);" onclick={() => mobileMenuOpen = false}>{t('navInstall', app.lang)}</a>
       <a href="#features" class="block text-sm py-2" style="color: var(--color-ink-2);" onclick={() => mobileMenuOpen = false}>{t('navFeatures', app.lang)}</a>
-      <a href="#skills" class="block text-sm py-2" style="color: var(--color-ink-2);" onclick={() => mobileMenuOpen = false}>{t('navSkills', app.lang)}</a>
+      <a href="#skills" class="block text-sm py-2" style="color: var(--color-ink-2);" onclick={() => mobileMenuOpen = false}>{t('navTools', app.lang)}</a>
       <a href="/pricing" class="block text-sm py-2" style="color: var(--color-ink-2);" onclick={() => mobileMenuOpen = false}>Pricing</a>
       <a href="https://github.com/astromanish/aishe-cli" target="_blank" class="flex items-center gap-1.5 text-sm py-2" style="color: var(--color-ink-2);" onclick={() => mobileMenuOpen = false}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -318,23 +321,23 @@
   </div>
 </section>
 
-<!-- ═══ SKILLS ═══ -->
+<!-- ═══ TOOLS ═══ -->
 <section id="skills" class="w-full px-6 py-20 md:py-28" style="background: var(--color-surface);">
   <div class="max-w-[1080px] mx-auto">
     <div class="mb-12 reveal">
-      <span class="text-[0.625rem] font-semibold tracking-[0.12em] uppercase mono" style="color: var(--color-accent);">{t('skillsLabel', app.lang)}</span>
-      <h2 class="text-[clamp(1.5rem,3.5vw,2.25rem)] font-semibold mt-3 mb-2 serif" style="color: var(--color-ink);">{t('skillsTitle', app.lang)}</h2>
-      <p class="text-[0.875rem] max-w-[28rem]" style="color: var(--color-ink-2);">{t('skillsSub', app.lang)}</p>
+      <span class="text-[0.625rem] font-semibold tracking-[0.12em] uppercase mono" style="color: var(--color-accent);">{t('toolsLabel', app.lang)}</span>
+      <h2 class="text-[clamp(1.5rem,3.5vw,2.25rem)] font-semibold mt-3 mb-2 serif" style="color: var(--color-ink);">{t('toolsTitle', app.lang)}</h2>
+      <p class="text-[0.875rem] max-w-[28rem]" style="color: var(--color-ink-2);">{t('toolsSub', app.lang)}</p>
     </div>
 
     <div class="flex flex-wrap gap-1.5 mb-8 reveal">
-      {#each skills as skill, i}
+      {#each tools as tool, i}
         <button
           class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[0.8125rem] font-medium transition-all"
           style="background:{i === activeSkill ? 'var(--color-ink)' : 'transparent'};color:{i === activeSkill ? 'var(--color-paper)' : 'var(--color-ink-2)'};border:1px solid {i === activeSkill ? 'var(--color-ink)' : 'var(--color-line-2)'};"
           onclick={() => activeSkill = i}>
-          <svg width="15" height="15" viewBox="0 0 24 24" class="ic"><path d={skill.icon}/></svg>
-          <span class="hidden sm:inline">{skill.title}</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" class="ic"><path d={tool.icon}/></svg>
+          <span class="hidden sm:inline">{tool.title}</span>
         </button>
       {/each}
     </div>
@@ -342,11 +345,11 @@
     <div class="rounded-xl border p-7 md:p-8 reveal" style="background:var(--color-paper);border-color:var(--color-line);">
       <div class="flex items-start gap-4">
         <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--color-accent-soft);">
-          <svg width="20" height="20" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={skills[activeSkill].icon}/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={tools[activeSkill].icon}/></svg>
         </div>
         <div>
-          <h3 class="text-[0.9375rem] font-semibold mb-1.5" style="color: var(--color-ink);">{skills[activeSkill].title}</h3>
-          <p class="text-[0.875rem] leading-relaxed max-w-[520px]" style="color: var(--color-ink-2);">{skills[activeSkill].desc}</p>
+          <h3 class="text-[0.9375rem] font-semibold mb-1.5" style="color: var(--color-ink);">{tools[activeSkill].title}</h3>
+          <p class="text-[0.875rem] leading-relaxed max-w-[520px]" style="color: var(--color-ink-2);">{tools[activeSkill].desc}</p>
         </div>
       </div>
     </div>
@@ -366,81 +369,48 @@
     <div class="reveal">
       <!-- Desktop layout -->
       <div class="hidden md:block">
-        <div class="flex items-center justify-center gap-0">
-          <!-- CLI -->
-          <div class="flex flex-col items-center text-center px-6 py-5 rounded-xl border" style="background: var(--color-surface); border-color: var(--color-line); min-width: 140px;">
-            <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-2.5" style="background: var(--color-accent-soft);">
-              <svg width="20" height="20" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={icons.terminal}/></svg>
+        <!-- Surfaces → agent. Three ways in, one agent behind them. -->
+        <div class="flex items-center justify-center gap-3 flex-wrap">
+          {#each surfaces as sfc}
+            <div class="flex flex-col items-center text-center px-5 py-4 rounded-xl border" style="background: var(--color-surface); border-color: var(--color-line); min-width: 130px;">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style="background: var(--color-accent-soft);">
+                <svg width="18" height="18" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={sfc.icon}/></svg>
+              </div>
+              <h3 class="text-[0.8125rem] font-semibold" style="color: var(--color-ink);">{sfc.name}</h3>
             </div>
-            <h3 class="text-[0.8125rem] font-semibold" style="color: var(--color-ink);">Aishe CLI</h3>
-            <p class="text-[0.6875rem] mt-1" style="color: var(--color-ink-3);">Your terminal</p>
-          </div>
+          {/each}
 
-          <!-- Arrow -->
-          <div class="flex items-center px-2">
-            <svg width="40" height="24" viewBox="0 0 40 24" class="opacity-30"><path d="M2 12h32M28 6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-ink-2);"/></svg>
-          </div>
+          <svg width="28" height="24" viewBox="0 0 40 24" class="opacity-30"><path d="M2 12h32M28 6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-ink-2);"/></svg>
 
-          <!-- DeepAgent (center, hub) -->
-          <div class="flex flex-col items-center text-center px-6 py-5 rounded-xl border" style="background: var(--color-surface); border-color: var(--color-ink); min-width: 160px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+          <!-- DeepAgent (hub) -->
+          <div class="flex flex-col items-center text-center px-6 py-4 rounded-xl border" style="background: var(--color-surface); border-color: var(--color-ink); min-width: 150px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
             <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-2.5" style="background: var(--color-accent-soft);">
               <svg width="20" height="20" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={icons.cpu}/></svg>
             </div>
-            <h3 class="text-[0.8125rem] font-semibold" style="color: var(--color-ink);">DeepAgent</h3>
-            <p class="text-[0.6875rem] mt-1" style="color: var(--color-ink-3);">LangGraph + tools</p>
-          </div>
-
-          <!-- Arrow -->
-          <div class="flex items-center px-2">
-            <svg width="40" height="24" viewBox="0 0 40 24" class="opacity-30"><path d="M2 12h32M28 6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-ink-2);"/></svg>
-          </div>
-
-          <!-- Ollama -->
-          <div class="flex flex-col items-center text-center px-6 py-5 rounded-xl border" style="background: var(--color-surface); border-color: var(--color-line); min-width: 140px;">
-            <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-2.5" style="background: var(--color-accent-soft);">
-              <svg width="20" height="20" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={icons.server}/></svg>
-            </div>
-            <h3 class="text-[0.8125rem] font-semibold" style="color: var(--color-ink);">Ollama</h3>
-            <p class="text-[0.6875rem] mt-1" style="color: var(--color-ink-3);">LLM inference</p>
+            <h3 class="text-[0.8125rem] font-semibold" style="color: var(--color-ink);">{t('arch1Name', app.lang)}</h3>
+            <p class="text-[0.6875rem] mono mt-0.5" style="color: var(--color-ink-3);">{t('arch1Port', app.lang)}</p>
           </div>
         </div>
 
-        <!-- Vertical connectors to STT/TTS -->
-        <div class="flex justify-center mt-2">
-          <div class="relative" style="width: 160px;">
-            <!-- Up arrows from STT/TTS to DeepAgent -->
-            <div class="flex justify-between" style="margin-top: 0;">
-              <!-- STT (left) -->
-              <div class="flex flex-col items-center">
-                <svg width="2" height="24" viewBox="0 0 2 24" class="opacity-20"><line x1="1" y1="24" x2="1" y2="0" stroke="currentColor" stroke-width="1.5" style="color: var(--color-ink-2);"/></svg>
-              </div>
-              <!-- TTS (right) -->
-              <div class="flex flex-col items-center">
-                <svg width="2" height="24" viewBox="0 0 2 24" class="opacity-20"><line x1="1" y1="24" x2="1" y2="0" stroke="currentColor" stroke-width="1.5" style="color: var(--color-ink-2);"/></svg>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-center text-[0.75rem] mt-4" style="color: var(--color-ink-3);">
+          {t('archHubNote', app.lang)}
+        </p>
 
-        <!-- STT + TTS row -->
-        <div class="flex items-start justify-center gap-12 mt-2">
-          <!-- Parakeet STT -->
-          <div class="flex flex-col items-center text-center px-5 py-4 rounded-xl border" style="background: var(--color-surface); border-color: var(--color-line); min-width: 130px;">
-            <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style="background: var(--color-accent-soft);">
-              <svg width="18" height="18" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={icons.wave}/></svg>
+        <!-- Backing services -->
+        <div class="hidden md:flex items-center justify-center gap-3 flex-wrap">
+          {#each archServices as svc, i}
+            <div class="flex flex-col items-center text-center px-5 py-4 rounded-xl border" style="background: var(--color-surface); border-color: {i === 0 ? 'var(--color-ink)' : 'var(--color-line)'}; min-width: 150px; {i === 0 ? 'box-shadow: 0 2px 12px rgba(0,0,0,0.04);' : ''}">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-2.5" style="background: var(--color-accent-soft);">
+                <svg width="20" height="20" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={svc.icon}/></svg>
+              </div>
+              <h3 class="text-[0.8125rem] font-semibold" style="color: var(--color-ink);">{svc.name}</h3>
+              <p class="text-[0.6875rem] mono mt-0.5" style="color: var(--color-ink-3);">{svc.port}</p>
+              <p class="text-[0.6875rem] mt-1 leading-snug max-w-[150px]" style="color: var(--color-ink-3);">{svc.desc}</p>
             </div>
-            <h3 class="text-[0.75rem] font-semibold" style="color: var(--color-ink);">Parakeet</h3>
-            <p class="text-[0.625rem] mt-0.5" style="color: var(--color-ink-3);">Speech → text</p>
-          </div>
-
-          <!-- Supertonic TTS -->
-          <div class="flex flex-col items-center text-center px-5 py-4 rounded-xl border" style="background: var(--color-surface); border-color: var(--color-line); min-width: 130px;">
-            <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style="background: var(--color-accent-soft);">
-              <svg width="18" height="18" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={icons.speaker}/></svg>
-            </div>
-            <h3 class="text-[0.75rem] font-semibold" style="color: var(--color-ink);">Supertonic</h3>
-            <p class="text-[0.625rem] mt-0.5" style="color: var(--color-ink-3);">Text → speech</p>
-          </div>
+            {#if i < archServices.length - 1}
+              <svg width="28" height="24" viewBox="0 0 40 24" class="opacity-30"><path d="M2 12h32M28 6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-ink-2);"/></svg>
+            {/if}
+          {/each}
         </div>
       </div>
 
@@ -452,7 +422,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" class="ic" style="color: var(--color-accent);"><path d={svc.icon}/></svg>
             </div>
             <h3 class="text-[0.8125rem] font-semibold" style="color: var(--color-ink);">{svc.name}</h3>
-            <p class="text-[0.625rem] mt-0.5" style="color: var(--color-ink-3);">{i === 0 ? 'LangGraph + tools' : i === 1 ? 'LLM inference' : i === 2 ? 'Speech → text' : 'Text → speech'}</p>
+            <p class="text-[0.625rem] mt-0.5" style="color: var(--color-ink-3);">{svc.name} · {svc.port}</p>
           </div>
           {#if i < archServices.length - 1}
             <svg width="24" height="20" viewBox="0 0 24 20" class="opacity-30"><path d="M12 2v14M6 10l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-ink-2);"/></svg>
